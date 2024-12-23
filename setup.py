@@ -1,6 +1,5 @@
 import sys
 from codecs import open
-
 from setuptools import find_packages, setup
 from setuptools.command.test import test as TestCommand
 
@@ -42,14 +41,13 @@ class PyTest(TestCommand):
 
 cmdclass = {"test": PyTest}  # Define custom commands.
 
-
 if "build_docs" in sys.argv:
     try:
         from sphinx.setup_command import BuildDoc
     except ImportError:
         raise ImportError(
-            "Running the documenation builds has additional"
-            " dependencies. Please run (pip install pyser[docs])"
+            "Running the documentation builds has additional"
+            " dependencies. Please run (pip install simple-youtube-api[doc])"
         )
     cmdclass["build_docs"] = BuildDoc
 
@@ -73,9 +71,9 @@ test_reqs = [
 ]
 
 doc_reqs = [
-    "sphinx_rtd_theme>=0.1.10b0S",
+    "sphinx_rtd_theme>=0.1.10",
     "Sphinx>=1.5.2",
-    "sphinx-autodoc-typehints>=1.10.3"
+    "sphinx-autodoc-typehints>=1.10.3",
 ]
 
 extra_reqs = {"doc": doc_reqs, "test": test_reqs}
@@ -105,6 +103,5 @@ setup(
         "Topic :: Utilities",
     ],
     install_requires=requires,
-    tests_require=test_reqs,
     extras_require=extra_reqs,
 )
